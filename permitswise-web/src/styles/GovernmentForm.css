@@ -1,0 +1,256 @@
+/* SA Government Form Styling */
+.gov-form {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #000;
+  background: #fff;
+  max-width: 210mm; /* A4 width */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.gov-form-header {
+  text-align: center;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+}
+
+.gov-form-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.gov-department {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.gov-subtitle {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.gov-act-reference {
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.gov-form-description {
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Section Styling */
+.gov-section {
+  margin-bottom: 25px;
+  border: 1px solid #000;
+  padding: 15px;
+}
+
+.gov-section-header {
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  background: #f0f0f0;
+  padding: 8px;
+  border: 1px solid #000;
+  margin: -15px -15px 15px -15px;
+}
+
+.gov-section-title {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Field Groups */
+.gov-field-group {
+  margin-bottom: 15px;
+}
+
+.gov-field-label {
+  font-size: 11px;
+  margin-bottom: 5px;
+  display: block;
+  font-weight: normal;
+}
+
+.gov-field-input {
+  border: 1px solid #000;
+  padding: 4px 6px;
+  font-size: 11px;
+  font-family: Arial, Helvetica, sans-serif;
+  width: 100%;
+  background: #fff;
+}
+
+/* Two-column layouts for checkboxes */
+.gov-checkbox-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  margin: 10px 0;
+}
+
+.gov-checkbox-item {
+  display: flex;
+  align-items: center;
+  font-size: 11px;
+}
+
+.gov-checkbox-item input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+/* Address and contact fields */
+.gov-address-group {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.gov-postal-code {
+  width: 80px;
+  text-align: center;
+}
+
+.gov-phone-group {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 10px;
+  align-items: end;
+}
+
+.gov-code-input {
+  width: 60px;
+  text-align: center;
+}
+
+/* Application type table */
+.gov-application-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+.gov-application-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  font-size: 11px;
+  vertical-align: top;
+}
+
+.gov-application-table .app-type {
+  width: 60%;
+}
+
+.gov-application-table .required-sections {
+  width: 40%;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Required sections styling */
+.gov-required-sections {
+  background: #f8f8f8;
+  padding: 10px;
+  border: 1px solid #000;
+  margin: 10px 0;
+}
+
+.gov-required-text {
+  font-size: 11px;
+  font-weight: bold;
+  text-align: right;
+  margin-bottom: 5px;
+}
+
+/* Attachment notes */
+.gov-attachment-note {
+  font-size: 10px;
+  font-style: italic;
+  margin-top: 5px;
+  color: #666;
+}
+
+.gov-attachment-required {
+  font-size: 10px;
+  font-weight: bold;
+  color: #000;
+  background: #ffffcc;
+  padding: 3px 6px;
+  border: 1px solid #000;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Form navigation */
+.gov-form-navigation {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #ccc;
+}
+
+.gov-nav-button {
+  padding: 10px 20px;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 2px solid #000;
+  background: #f0f0f0;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.gov-nav-button:hover {
+  background: #e0e0e0;
+}
+
+.gov-nav-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  color: #666;
+}
+
+/* Page indicator */
+.gov-page-indicator {
+  text-align: right;
+  font-size: 10px;
+  font-weight: bold;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 800px) {
+  .gov-form {
+    padding: 15px;
+    max-width: 100%;
+  }
+  
+  .gov-checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .gov-address-group,
+  .gov-phone-group {
+    grid-template-columns: 1fr;
+  }
+  
+  .gov-application-table {
+    font-size: 10px;
+  }
+}
