@@ -1,70 +1,171 @@
-# Getting Started with Create React App
+# PermitWise - Permit Application System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern web application for streamlining permit applications with a professional government form design aesthetic.
 
-## Available Scripts
+## 🚦 Features
 
-In the project directory, you can run:
+- **Professional Form Design**: Based on SA Government Form Design Guide
+- **PermitWise Branding**: Clean, trustworthy branding with blue color scheme
+- **Multi-page Forms**: Step-by-step application process
+- **Form Validation**: Real-time validation and error handling
+- **File Upload**: Support for document attachments
+- **Draft Saving**: Save progress and return later
+- **Responsive Design**: Works on desktop and mobile devices
+- **Firebase Integration**: Backend data storage and management
 
-### `npm start`
+## 🎨 Design System
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The application uses a custom design system that combines:
+- **Government Form Aesthetics**: Professional, structured layout
+- **PermitWise Branding**: Blue color scheme (#2563eb) for trust and professionalism
+- **Accessibility**: WCAG compliant with proper focus indicators
+- **Print-friendly**: Optimized for printing applications
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Color Palette
+- **Primary Blue**: #2563eb (PermitWise brand)
+- **Secondary Blue**: #1e40af (Hover states)
+- **Accent Orange**: #f59e0b (Highlights and CTAs)
+- **Success Green**: #10b981
+- **Error Red**: #ef4444
 
-### `npm test`
+## 🏗️ Component Architecture
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Core Components
+- `PermitWiseHeader`: Brand header with logo and tagline
+- `FormHeader`: Government form title and department info
+- `FormSection`: Bordered sections with headers
+- `FormField`: Standard text inputs with validation
+- `CheckboxGrid`: Two-column checkbox layouts
+- `ApplicationTypeTable`: Complex table for application type selection
+- `FileUpload`: File upload with attachment notes
+- `FormNavigation`: Previous/Save/Next buttons
 
-### `npm run build`
+### Usage Example
+```jsx
+import {
+  PermitWiseHeader,
+  FormSection,
+  FormField,
+  FormNavigation
+} from './components/GovernmentForm';
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+const MyForm = () => (
+  <div className="permitwise-form-container">
+    <PermitWiseHeader />
+    <FormSection sectionId="A" sectionTitle="Basic Information">
+      <FormField
+        label="Company Name"
+        name="companyName"
+        required
+      />
+    </FormSection>
+    <FormNavigation />
+  </div>
+);
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🚀 Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn
 
-### `npm run eject`
+### Installation
+```bash
+cd permitswise-web
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Development
+```bash
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The application will open at `http://localhost:3000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Build for Production
+```bash
+npm run build
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📁 Project Structure
 
-## Learn More
+```
+permitswise-web/
+├── src/
+│   ├── components/
+│   │   └── GovernmentForm/
+│   │       ├── PermitWiseHeader.js
+│   │       ├── FormHeader.js
+│   │       ├── FormSection.js
+│   │       ├── FormField.js
+│   │       ├── CheckboxGrid.js
+│   │       ├── ApplicationTypeTable.js
+│   │       ├── FileUpload.js
+│   │       ├── FormNavigation.js
+│   │       └── index.js
+│   ├── pages/
+│   │   └── PermitApplication.js
+│   ├── styles/
+│   │   └── GovernmentForm.css
+│   ├── App.js
+│   └── firebase.js
+├── public/
+└── package.json
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔧 Configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Firebase Setup
+The application uses Firebase for data storage. Configure your Firebase project in `src/firebase.js`:
 
-### Code Splitting
+```javascript
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+const firebaseConfig = {
+  // Your Firebase config
+};
 
-### Analyzing the Bundle Size
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 📱 Responsive Design
 
-### Making a Progressive Web App
+The form system is fully responsive with breakpoints:
+- **Desktop**: > 800px (full layout)
+- **Mobile**: ≤ 800px (stacked layout)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🖨️ Print Optimization
 
-### Advanced Configuration
+Forms are optimized for printing with:
+- Clean black and white design
+- Proper page breaks
+- Hidden navigation elements
+- A4 page dimensions
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🔒 Security & Validation
 
-### Deployment
+- Form validation with error states
+- File type validation for uploads
+- Required field indicators
+- Success/error feedback
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🎯 Future Enhancements
 
-### `npm run build` fails to minify
+- [ ] User authentication system
+- [ ] Multi-language support
+- [ ] Advanced form validation
+- [ ] PDF generation
+- [ ] Email notifications
+- [ ] Admin dashboard
+- [ ] Application tracking
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 📄 License
+
+This project is proprietary software for PermitWise.
+
+---
+
+**PermitWise** - Streamlining permit applications with modern technology and professional design.
