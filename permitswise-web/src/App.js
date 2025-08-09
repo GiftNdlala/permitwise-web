@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import AdminLogin from './pages/AdminLogin';
 import ApplicantLayout from './components/Layout/ApplicantLayout';
 import ApplicantLogin from './applicant/pages/ApplicantLogin';
+import ApplicantSignup from './applicant/pages/ApplicantSignup';
 import ApplicantApplications from './applicant/pages/ApplicationsList';
 import ApplicantSelectType from './applicant/pages/SelectApplicationType';
 import ApplicantProfile from './applicant/pages/Profile';
@@ -20,8 +21,8 @@ function App() {
     <Router>
       <Routes>
         {/* Entry */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Navigate to="/applicant/login" replace />} />
+        <Route path="/login" element={<Navigate to="/applicant/login" replace />} />
 
         {/* Admin auth */}
         <Route path="/admin/login" element={<AdminLogin />} />
@@ -49,6 +50,7 @@ function App() {
 
         {/* Applicant auth */}
         <Route path="/applicant/login" element={<ApplicantLogin />} />
+        <Route path="/applicant/signup" element={<ApplicantSignup />} />
 
         {/* Applicants portal */}
         <Route path="/applicant" element={<ApplicantLayout />}>
@@ -61,7 +63,7 @@ function App() {
         </Route>
 
         {/* Catch all */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/applicant/login" replace />} />
       </Routes>
     </Router>
   );
