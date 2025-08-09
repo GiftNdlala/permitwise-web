@@ -15,31 +15,43 @@ const Header = () => {
 
   const getPageTitle = () => {
     const path = location.pathname;
-    if (path === '/dashboard') return 'Dashboard';
-    if (path.startsWith('/permits')) {
-      if (path === '/permits/new') return 'New Permit';
-      if (path === '/permits/list') return 'Permits List';
-      if (path === '/permits/amendment') return 'Permit Amendment';
-      if (path === '/permits/renewal') return 'Permit Renewal';
-      if (path === '/permits/transfer') return 'Permit Transfer';
-      if (path === '/permits/conversion') return 'Permit Conversion';
+    // Admin
+    if (path === '/admin/dashboard') return 'Dashboard';
+    if (path.startsWith('/admin/permits')) {
+      if (path === '/admin/permits/new') return 'New Permit';
+      if (path === '/admin/permits/list') return 'Permits List';
+      if (path === '/admin/permits/amendment') return 'Permit Amendment';
+      if (path === '/admin/permits/renewal') return 'Permit Renewal';
+      if (path === '/admin/permits/transfer') return 'Permit Transfer';
+      if (path === '/admin/permits/conversion') return 'Permit Conversion';
       return 'Permits';
     }
-    if (path === '/licences') return 'Licences';
-    if (path === '/workflows') return 'Workflows';
-    if (path === '/notifications') return 'Notifications';
-    if (path === '/payments') return 'Payments';
-    if (path === '/analytics') return 'Analytics';
-    if (path === '/settings') return 'Settings';
-    if (path === '/admin') return 'Admin Panel';
+    if (path === '/admin/licences') return 'Licences';
+    if (path === '/admin/workflows') return 'Workflows';
+    if (path === '/admin/notifications') return 'Notifications';
+    if (path === '/admin/payments') return 'Payments';
+    if (path === '/admin/analytics') return 'Analytics';
+    if (path === '/admin/settings') return 'Settings';
+    if (path === '/admin/users') return 'User Management';
+
+    // Applicant
+    if (path.startsWith('/applicant')) {
+      if (path === '/applicant/applications') return 'My Applications';
+      if (path === '/applicant/applications/new') return 'Select Application Type';
+      if (path.startsWith('/applicant/applications/new/')) return 'Application Form';
+      if (path === '/applicant/profile') return 'Profile';
+      if (path === '/applicant/help') return 'Help & Support';
+      return 'Applicant Portal';
+    }
+
     return 'PermitWise';
   };
 
   const getPageIcon = () => {
     const path = location.pathname;
-    if (path.startsWith('/permits')) return '📄';
-    if (path === '/dashboard') return '📊';
-    if (path === '/settings') return '⚙️';
+    if (path.startsWith('/admin/permits') || path.startsWith('/applicant/applications')) return '📄';
+    if (path === '/admin/dashboard') return '📊';
+    if (path.endsWith('/settings')) return '⚙️';
     return '📋';
   };
 

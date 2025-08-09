@@ -19,7 +19,6 @@ import {
   MdSwapHoriz,
   MdTransform,
   MdBusiness,
-  MdAssignment,
   MdPerson
 } from 'react-icons/md';
 import './Sidebar.css';
@@ -38,6 +37,9 @@ const Sidebar = () => {
     }));
   };
 
+  const isActive = (path) => location.pathname === path;
+  const startsWith = (prefix) => location.pathname.startsWith(prefix);
+
   return (
     <div className="sidebar">
       <div className="sidebar-header">
@@ -50,8 +52,8 @@ const Sidebar = () => {
       <nav className="sidebar-nav">
         <div className="nav-item-container">
           <Link 
-            to="/dashboard" 
-            className={`nav-item ${location.pathname === '/dashboard' ? 'active' : ''}`}
+            to="/admin/dashboard" 
+            className={`nav-item ${isActive('/admin/dashboard') ? 'active' : ''}`}
           >
             <MdDashboard className="nav-icon" />
             <span className="nav-label">Dashboard</span>
@@ -60,7 +62,7 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <div 
-            className={`nav-item ${location.pathname.startsWith('/permits') ? 'active' : ''}`}
+            className={`nav-item ${startsWith('/admin/permits') ? 'active' : ''}`}
             onClick={() => toggleSection('permits')}
             style={{ cursor: 'pointer' }}
           >
@@ -76,39 +78,46 @@ const Sidebar = () => {
           {expandedSections.permits && (
             <div className="sub-nav">
               <Link 
-                to="/permits/new" 
-                className={`sub-nav-item ${location.pathname === '/permits/new' ? 'active' : ''}`}
+                to="/admin/permits/new" 
+                className={`sub-nav-item ${isActive('/admin/permits/new') ? 'active' : ''}`}
               >
                 <MdAdd className="sub-nav-icon" />
                 <span className="sub-nav-label">New</span>
               </Link>
               <Link 
-                to="/permits/amendment" 
-                className={`sub-nav-item ${location.pathname === '/permits/amendment' ? 'active' : ''}`}
+                to="/admin/permits/amendment" 
+                className={`sub-nav-item ${isActive('/admin/permits/amendment') ? 'active' : ''}`}
               >
                 <MdEdit className="sub-nav-icon" />
                 <span className="sub-nav-label">Amendment</span>
               </Link>
               <Link 
-                to="/permits/renewal" 
-                className={`sub-nav-item ${location.pathname === '/permits/renewal' ? 'active' : ''}`}
+                to="/admin/permits/renewal" 
+                className={`sub-nav-item ${isActive('/admin/permits/renewal') ? 'active' : ''}`}
               >
                 <MdRefresh className="sub-nav-icon" />
                 <span className="sub-nav-label">Renewal</span>
               </Link>
               <Link 
-                to="/permits/transfer" 
-                className={`sub-nav-item ${location.pathname === '/permits/transfer' ? 'active' : ''}`}
+                to="/admin/permits/transfer" 
+                className={`sub-nav-item ${isActive('/admin/permits/transfer') ? 'active' : ''}`}
               >
                 <MdSwapHoriz className="sub-nav-icon" />
                 <span className="sub-nav-label">Transfer</span>
               </Link>
               <Link 
-                to="/permits/conversion" 
-                className={`sub-nav-item ${location.pathname === '/permits/conversion' ? 'active' : ''}`}
+                to="/admin/permits/conversion" 
+                className={`sub-nav-item ${isActive('/admin/permits/conversion') ? 'active' : ''}`}
               >
                 <MdTransform className="sub-nav-icon" />
                 <span className="sub-nav-label">Conversion</span>
+              </Link>
+              <Link 
+                to="/admin/permits/list" 
+                className={`sub-nav-item ${isActive('/admin/permits/list') ? 'active' : ''}`}
+              >
+                <MdList className="sub-nav-icon" />
+                <span className="sub-nav-label">All Permits</span>
               </Link>
             </div>
           )}
@@ -116,7 +125,7 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <div 
-            className={`nav-item ${location.pathname.startsWith('/licences') ? 'active' : ''}`}
+            className={`nav-item ${startsWith('/admin/licences') ? 'active' : ''}`}
             onClick={() => toggleSection('licences')}
             style={{ cursor: 'pointer' }}
           >
@@ -132,15 +141,15 @@ const Sidebar = () => {
           {expandedSections.licences && (
             <div className="sub-nav">
               <Link 
-                to="/licences/new" 
-                className={`sub-nav-item ${location.pathname === '/licences/new' ? 'active' : ''}`}
+                to="/admin/licences/new" 
+                className={`sub-nav-item ${isActive('/admin/licences/new') ? 'active' : ''}`}
               >
                 <MdAdd className="sub-nav-icon" />
                 <span className="sub-nav-label">New Licence</span>
               </Link>
               <Link 
-                to="/licences/list" 
-                className={`sub-nav-item ${location.pathname === '/licences/list' ? 'active' : ''}`}
+                to="/admin/licences/list" 
+                className={`sub-nav-item ${isActive('/admin/licences/list') ? 'active' : ''}`}
               >
                 <MdList className="sub-nav-icon" />
                 <span className="sub-nav-label">All Licences</span>
@@ -151,8 +160,8 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <Link 
-            to="/workflows" 
-            className={`nav-item ${location.pathname === '/workflows' ? 'active' : ''}`}
+            to="/admin/workflows" 
+            className={`nav-item ${isActive('/admin/workflows') ? 'active' : ''}`}
           >
             <MdAssignment className="nav-icon" />
             <span className="nav-label">Workflows</span>
@@ -161,8 +170,8 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <Link 
-            to="/notifications" 
-            className={`nav-item ${location.pathname === '/notifications' ? 'active' : ''}`}
+            to="/admin/notifications" 
+            className={`nav-item ${isActive('/admin/notifications') ? 'active' : ''}`}
           >
             <MdNotifications className="nav-icon" />
             <span className="nav-label">Notifications</span>
@@ -171,8 +180,8 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <Link 
-            to="/payments" 
-            className={`nav-item ${location.pathname === '/payments' ? 'active' : ''}`}
+            to="/admin/payments" 
+            className={`nav-item ${isActive('/admin/payments') ? 'active' : ''}`}
           >
             <MdPayment className="nav-icon" />
             <span className="nav-label">Payments</span>
@@ -181,8 +190,8 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <Link 
-            to="/analytics" 
-            className={`nav-item ${location.pathname === '/analytics' ? 'active' : ''}`}
+            to="/admin/analytics" 
+            className={`nav-item ${isActive('/admin/analytics') ? 'active' : ''}`}
           >
             <MdAnalytics className="nav-icon" />
             <span className="nav-label">Analytics</span>
@@ -191,8 +200,8 @@ const Sidebar = () => {
 
         <div className="nav-item-container">
           <Link 
-            to="/settings" 
-            className={`nav-item ${location.pathname === '/settings' ? 'active' : ''}`}
+            to="/admin/settings" 
+            className={`nav-item ${isActive('/admin/settings') ? 'active' : ''}`}
           >
             <MdSettings className="nav-icon" />
             <span className="nav-label">Settings</span>
@@ -202,7 +211,7 @@ const Sidebar = () => {
         <div className="nav-item-container">
           <Link 
             to="/admin" 
-            className={`nav-item ${location.pathname === '/admin' ? 'active' : ''}`}
+            className={`nav-item ${isActive('/admin') ? 'active' : ''}`}
           >
             <MdAdminPanelSettings className="nav-icon" />
             <span className="nav-label">Admin</span>
@@ -211,7 +220,7 @@ const Sidebar = () => {
 
         <div className="nav-item-container logout-container">
           <Link 
-            to="/logout" 
+            to="/login" 
             className="nav-item logout-item"
           >
             <MdLogout className="nav-icon" />

@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { MdArrowForward, MdArrowBack, MdPerson, MdLocationOn, MdDescription, MdDirectionsCar, MdAssessment, MdAssignment, MdNotifications, MdInfo } from 'react-icons/md';
+import fieldMatrix from '../config/fieldMatrix.json';
 import './PermitForm.css';
 
-const PermitForm = () => {
+const PermitForm = ({ mode = 'admin' }) => {
+  const { type } = useParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [applicationType, setApplicationType] = useState('');
   const [serviceType, setServiceType] = useState('');
@@ -12,20 +15,22 @@ const PermitForm = () => {
   const [identificationType, setIdentificationType] = useState('');
   const { register, watch, formState: { errors } } = useForm();
 
-  // Field matrix logic based on Excel file
-  const fieldMatrix = {
-    A: { name: 'Application Type', required: ['New', 'Renewal', 'Transfer', 'Conversion', 'Amendment'] },
-    B: { name: 'Applicant Details', required: ['New', 'Renewal', 'Transfer', 'Conversion', 'Amendment'] },
-    C: { name: 'Responsible Person', required: ['New', 'Renewal', 'Transfer', 'Conversion', 'Amendment'] },
-    D: { name: 'Permit Transfer Details', required: ['Transfer'] },
-    E: { name: 'Ownership/Acquisition Details', required: ['Transfer', 'Conversion'] },
-    F: { name: 'Public Transport Service', required: ['New', 'Renewal', 'Transfer', 'Conversion', 'Amendment'] },
-    G: { name: 'Routes/Areas Served', required: ['New', 'Renewal', 'Conversion', 'Amendment'] },
-    H: { name: 'Infrastructure', required: ['New', 'Renewal', 'Transfer', 'Conversion', 'Amendment'] },
-    J: { name: 'Lost/Damaged Declaration', required: ['Renewal'] },
-    K: { name: 'Applicant Declaration', required: ['New', 'Renewal', 'Transfer', 'Conversion', 'Amendment'] },
-    L: { name: 'Vehicle Details', required: ['New', 'Renewal'] }
-  };
+  // Normalize URL param to matrix value
+  useEffect(() => {
+    if (mode === 'applicant' && type) {
+      const normalized = String(type || '').toLowerCase();
+      const map = {
+        new: 'New',
+        renewal: 'Renewal',
+        transfer: 'Transfer',
+        conversion: 'Conversion',
+        amendment: 'Amendment'
+      };
+      if (map[normalized]) {
+        setApplicationType(map[normalized]);
+      }
+    }
+  }, [mode, type]);
 
   const formSteps = [
     {
@@ -38,7 +43,7 @@ const PermitForm = () => {
       id: 'address-info',
       title: 'Address Info',
       icon: MdLocationOn,
-      sections: ['B'] // Address is part of applicant details
+      sections: ['B']
     },
     {
       id: 'documentation',
@@ -56,7 +61,7 @@ const PermitForm = () => {
       id: 'audit',
       title: 'Audit',
       icon: MdAssessment,
-      sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L']
+      sections: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L']
     },
     {
       id: 'workflows',
@@ -80,14 +85,19 @@ const PermitForm = () => {
 
   const isSectionRequired = (sectionKey) => {
     if (!applicationType) return false;
-    return fieldMatrix[sectionKey]?.required.includes(applicationType);
+    return (fieldMatrix[sectionKey]?.required || []).includes(applicationType);
   };
 
   const getVisibleSteps = () => {
-    return formSteps.filter(step => {
-      if (step.sections.length === 0) return true; // Always show workflow, notifications, status
+    const stepsBase = formSteps.filter(step => {
+      if (step.sections.length === 0) return true;
       return step.sections.some(section => isSectionRequired(section));
     });
+    // Applicants do not see admin-only steps
+    if (mode === 'applicant') {
+      return stepsBase.filter(s => s.id !== 'workflows' && s.id !== 'notifications');
+    }
+    return stepsBase;
   };
 
   const visibleSteps = getVisibleSteps();
@@ -133,7 +143,9 @@ const PermitForm = () => {
                 <select
                   {...register('applicationType', { required: true })}
                   className="form-input"
+                  value={applicationType}
                   onChange={(e) => setApplicationType(e.target.value)}
+                  disabled={mode === 'applicant'}
                 >
                   <option value="">-- Select application type --</option>
                   <option value="New">New operating licence</option>
@@ -574,14 +586,7 @@ const PermitForm = () => {
         );
 
       default:
-        return (
-          <div className="form-section">
-            <h3 className="section-title">{currentStepData.title}</h3>
-            <div className="placeholder-content">
-              Content for {currentStepData.title} will be implemented here.
-            </div>
-          </div>
-        );
+        return null;
     }
   };
 

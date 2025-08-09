@@ -1,0 +1,14 @@
+{
+  "A": { "name": "Application Type", "required": ["New", "Renewal", "Transfer", "Conversion", "Amendment"] },
+  "B": { "name": "Applicant Details", "required": ["New", "Renewal", "Transfer", "Conversion", "Amendment"] },
+  "C": { "name": "Responsible Person", "required": ["New", "Renewal", "Transfer", "Conversion", "Amendment"] },
+  "D": { "name": "Permit Transfer Details", "required": ["Transfer"] },
+  "E": { "name": "Ownership/Acquisition Details", "required": ["Transfer", "Conversion"] },
+  "F": { "name": "Public Transport Service", "required": ["New", "Renewal", "Transfer", "Conversion", "Amendment"] },
+  "G": { "name": "Routes/Areas Served", "required": ["New", "Renewal", "Conversion", "Amendment"] },
+  "H": { "name": "Infrastructure", "required": ["New", "Renewal", "Transfer", "Conversion", "Amendment"] },
+  "I": { "name": "Current OL or Permit Details", "required": ["Renewal", "Conversion", "Amendment"] },
+  "J": { "name": "Lost/Damaged Declaration", "required": ["Renewal"] },
+  "K": { "name": "Applicant Declaration", "required": ["New", "Renewal", "Transfer", "Conversion", "Amendment"] },
+  "L": { "name": "Vehicle Details", "required": ["New", "Renewal"] }
+}
