@@ -4,8 +4,8 @@ import Layout from './components/Layout/Layout';
 import Dashboard from './pages/Dashboard';
 import PermitsList from './pages/PermitsList';
 import PermitForm from './pages/PermitForm';
+import PermitDetail from './pages/PermitDetail';
 import Settings from './pages/Settings';
-import Login from './pages/Login';
 import AdminLogin from './pages/AdminLogin';
 import ApplicantLayout from './components/Layout/ApplicantLayout';
 import ApplicantLogin from './applicant/pages/ApplicantLogin';
@@ -14,6 +14,12 @@ import ApplicantApplications from './applicant/pages/ApplicationsList';
 import ApplicantSelectType from './applicant/pages/SelectApplicationType';
 import ApplicantProfile from './applicant/pages/Profile';
 import ApplicantHelp from './applicant/pages/Help';
+import Workflows from './pages/Workflows';
+import Notifications from './pages/Notifications';
+import Payments from './pages/Payments';
+import Analytics from './pages/Analytics';
+import LicencesList from './pages/LicencesList';
+import Users from './pages/Users';
 import './App.css';
 
 function App() {
@@ -38,14 +44,14 @@ function App() {
           <Route path="permits/renewal" element={<PermitForm mode="admin" />} />
           <Route path="permits/transfer" element={<PermitForm mode="admin" />} />
           <Route path="permits/conversion" element={<PermitForm mode="admin" />} />
+          <Route path="permits/:id" element={<PermitDetail />} />
+          <Route path="licences" element={<LicencesList />} />
+          <Route path="workflows" element={<Workflows />} />
+          <Route path="notifications" element={<Notifications />} />
+          <Route path="payments" element={<Payments />} />
+          <Route path="analytics" element={<Analytics />} />
           <Route path="settings" element={<Settings />} />
-          {/* Placeholders for other admin routes */}
-          <Route path="licences" element={<div style={{ padding: '24px', color: 'white' }}>Licence management coming soon.</div>} />
-          <Route path="workflows" element={<div style={{ padding: '24px', color: 'white' }}>Workflows coming soon.</div>} />
-          <Route path="notifications" element={<div style={{ padding: '24px', color: 'white' }}>Notifications coming soon.</div>} />
-          <Route path="payments" element={<div style={{ padding: '24px', color: 'white' }}>Payments coming soon.</div>} />
-          <Route path="analytics" element={<div style={{ padding: '24px', color: 'white' }}>Analytics coming soon.</div>} />
-          <Route path="users" element={<div style={{ padding: '24px', color: 'white' }}>Users coming soon.</div>} />
+          <Route path="users" element={<Users />} />
         </Route>
 
         {/* Applicant auth */}

@@ -80,7 +80,7 @@ const PermitsList = () => {
             <span className="btn-icon">🔍</span>
             Filters
           </button>
-          <Link to="/permits/new" className="btn-primary">
+          <Link to="/admin/permits/new" className="btn-primary">
             <span className="btn-icon">➕</span>
             New
           </Link>
@@ -116,7 +116,11 @@ const PermitsList = () => {
             <tbody>
               {filteredPermits.map((permit) => (
                 <tr key={permit.id} className="table-row">
-                  <td className="application-id">{permit.id}</td>
+                  <td className="application-id">
+                    <Link to={`/admin/permits/${permit.id}`} className="link">
+                      {permit.id}
+                    </Link>
+                  </td>
                   <td className="applicant-name">{permit.applicantName}</td>
                   <td className="vehicle-type">{permit.vehicleType}</td>
                   <td>
@@ -127,9 +131,7 @@ const PermitsList = () => {
                   <td className="amount">{permit.amount}</td>
                   <td className="submission-date">{permit.submissionDate}</td>
                   <td className="actions">
-                    <button className="action-button">
-                      <span className="action-icon">⋯</span>
-                    </button>
+                    <Link to={`/admin/permits/${permit.id}`} className="btn-link">View</Link>
                   </td>
                 </tr>
               ))}
@@ -145,7 +147,7 @@ const PermitsList = () => {
               {searchTerm ? 'Try adjusting your search terms.' : 'Get started by creating your first permit.'}
             </p>
             {!searchTerm && (
-              <Link to="/permits/new" className="btn-primary">
+              <Link to="/admin/permits/new" className="btn-primary">
                 <span className="btn-icon">➕</span>
                 Create New Permit
               </Link>
