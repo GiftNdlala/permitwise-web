@@ -39,11 +39,11 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="permits" element={<Navigate to="permits/list" replace />} />
           <Route path="permits/list" element={<PermitsList />} />
-          <Route path="permits/new" element={<PermitForm mode="admin" />} />
-          <Route path="permits/amendment" element={<PermitForm mode="admin" />} />
-          <Route path="permits/renewal" element={<PermitForm mode="admin" />} />
-          <Route path="permits/transfer" element={<PermitForm mode="admin" />} />
-          <Route path="permits/conversion" element={<PermitForm mode="admin" />} />
+          <Route path="permits/new" element={<PermitForm mode="admin" presetType="New" />} />
+          <Route path="permits/amendment" element={<PermitForm mode="admin" presetType="Amendment" />} />
+          <Route path="permits/renewal" element={<PermitForm mode="admin" presetType="Renewal" />} />
+          <Route path="permits/transfer" element={<PermitForm mode="admin" presetType="Transfer" />} />
+          <Route path="permits/conversion" element={<PermitForm mode="admin" presetType="Conversion" />} />
           <Route path="permits/:id" element={<PermitDetail />} />
           <Route path="licences" element={<LicencesList />} />
           <Route path="workflows" element={<Workflows />} />

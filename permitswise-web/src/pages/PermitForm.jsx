@@ -5,7 +5,7 @@ import { MdArrowForward, MdArrowBack, MdPerson, MdLocationOn, MdDescription, MdD
 import fieldMatrix from '../config/fieldMatrix.json';
 import './PermitForm.css';
 
-const PermitForm = ({ mode = 'admin' }) => {
+const PermitForm = ({ mode = 'admin', presetType } ) => {
   const { type } = useParams();
   const [currentStep, setCurrentStep] = useState(0);
   const [applicationType, setApplicationType] = useState('');
@@ -17,20 +17,28 @@ const PermitForm = ({ mode = 'admin' }) => {
 
   // Normalize URL param to matrix value
   useEffect(() => {
-    if (mode === 'applicant' && type) {
-      const normalized = String(type || '').toLowerCase();
-      const map = {
-        new: 'New',
-        renewal: 'Renewal',
-        transfer: 'Transfer',
-        conversion: 'Conversion',
-        amendment: 'Amendment'
-      };
-      if (map[normalized]) {
-        setApplicationType(map[normalized]);
-      }
+    const normalizedUrl = String(type || '').toLowerCase();
+    const normalizedProp = String(presetType || '').toLowerCase();
+    const map = {
+      new: 'New',
+      renewal: 'Renewal',
+      transfer: 'Transfer',
+      conversion: 'Conversion',
+      amendment: 'Amendment'
+    };
+
+    // Applicant: derive from URL param
+    if (mode === 'applicant' && type && map[normalizedUrl]) {
+      setApplicationType(map[normalizedUrl]);
+      return;
     }
-  }, [mode, type]);
+
+    // Admin: allow preset from route via prop
+    if (mode === 'admin' && presetType && map[normalizedProp]) {
+      setApplicationType(map[normalizedProp]);
+      return;
+    }
+  }, [mode, type, presetType]);
 
   const formSteps = [
     {
@@ -97,7 +105,8 @@ const PermitForm = ({ mode = 'admin' }) => {
     if (mode === 'applicant') {
       return stepsBase.filter(s => s.id !== 'workflows' && s.id !== 'notifications');
     }
-    return stepsBase;
+    // Admin sees all steps regardless of required sections
+    return formSteps;
   };
 
   const visibleSteps = getVisibleSteps();
