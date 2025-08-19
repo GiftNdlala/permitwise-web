@@ -45,9 +45,27 @@ const Dashboard = () => {
         <p className="dashboard-subtitle">Manage and track all permits.</p>
       </div>
 
+      {/* Analytics Highlights */}
+      <div className="dashboard-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
+        {[{ title: 'Total Applications', value: '1,284', trend: 4.2 },
+          { title: 'Avg. Processing Time', value: '5.6 days', trend: -1.1 },
+          { title: 'Approval Rate', value: '78%', trend: 2.3 },
+          { title: 'Revenue (30d)', value: 'R 145k', trend: 3.4 }].map((m, idx) => (
+          <div key={idx} className="dashboard-card" style={{ padding: 16 }}>
+            <div className="card-title" style={{ marginBottom: 6 }}>{m.title}</div>
+            <div style={{ color: 'white', fontSize: 24 }}>{m.value}</div>
+            <div style={{ color: m.trend > 0 ? '#16a34a' : '#ef4444', fontSize: 12, marginTop: 2 }}>{m.trend > 0 ? `▲ ${m.trend}%` : `▼ ${Math.abs(m.trend)}%`}</div>
+            {/* Demo sparkline */}
+            <div style={{ marginTop: 10, height: 42, background: 'linear-gradient(180deg, rgba(37,99,235,0.15), rgba(37,99,235,0.02))', border: '1px solid #1f2937', borderRadius: 8 }}>
+              <div style={{ height: '100%', background: 'repeating-linear-gradient(90deg, transparent, transparent 8px, rgba(255,255,255,0.05) 8px, rgba(255,255,255,0.05) 9px)' }} />
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="dashboard-grid">
         <div className="dashboard-card chart-card">
-          <h3 className="card-title">Application Type Distribution</h3>
+          <h3 className="card-title">Analytics</h3>
           <p className="card-subtitle">Distribution of applications by type.</p>
           
           <div className="pie-chart">
@@ -75,6 +93,17 @@ const Dashboard = () => {
                   </div>
                 ))}
               </div>
+            </div>
+          </div>
+          {/* Additional demo charts */}
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 12, marginTop: 16 }}>
+            <div style={{ background: '#0b1220', border: '1px solid #1f2937', borderRadius: 12, padding: 12, color: '#e2e8f0' }}>
+              <div style={{ color: 'white', marginBottom: 8 }}>Applications by Type (Demo)</div>
+              <div style={{ height: 160, borderRadius: 8, background: 'repeating-linear-gradient(90deg,#111827,#111827 12px,#0f172a 12px,#0f172a 24px)' }} />
+            </div>
+            <div style={{ background: '#0b1220', border: '1px solid #1f2937', borderRadius: 12, padding: 12, color: '#e2e8f0' }}>
+              <div style={{ color: 'white', marginBottom: 8 }}>Regional Heatmap (Demo)</div>
+              <div style={{ height: 160, borderRadius: 8, background: 'repeating-linear-gradient(0deg,#111827,#111827 10px,#0f172a 10px,#0f172a 20px)' }} />
             </div>
           </div>
         </div>

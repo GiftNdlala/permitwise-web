@@ -11,7 +11,7 @@ const PermitForm = ({ mode = 'admin', presetType } ) => {
   const [applicationType, setApplicationType] = useState('');
   const [serviceType, setServiceType] = useState('');
   const [applyingAs, setApplyingAs] = useState('');
-  const [affiliatedWith, setAffiliatedWith] = useState('');
+  // kept for future dynamic behaviours; field is controlled via react-hook-form only
   const { register, formState: { errors } } = useForm();
 
   // Normalize URL param to matrix value
@@ -236,7 +236,6 @@ const PermitForm = ({ mode = 'admin', presetType } ) => {
                   {...register('affiliatedWith', { required: true })}
                   className="form-input"
                   disabled={!applyingAs}
-                  onChange={(e) => setAffiliatedWith(e.target.value)}
                 >
                   <option value="">-- Select affiliate --</option>
                   {applyingAs && (

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 
 const AuthContext = createContext({
   user: null,
@@ -62,13 +62,13 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const updateProfile = async (partial) => {
+  const updateProfile = useCallback(async (partial) => {
     if (!user) return null;
     const updated = { ...user, ...partial };
     window.localStorage.setItem('demo_user', JSON.stringify(updated));
     setUser(updated);
     return updated;
-  };
+  }, [user]);
 
   const value = useMemo(() => ({ user, initializing, login, signup, logout, loginAsAdmin, updateProfile }), [user, initializing, updateProfile]);
 
