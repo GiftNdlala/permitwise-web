@@ -19,8 +19,7 @@ import {
   MdRefresh,
   MdSwapHoriz,
   MdTransform,
-  MdBusiness,
-  MdPerson
+  MdBusiness
 } from 'react-icons/md';
 import './Sidebar.css';
 

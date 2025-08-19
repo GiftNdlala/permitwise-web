@@ -12,8 +12,7 @@ const PermitForm = ({ mode = 'admin', presetType } ) => {
   const [serviceType, setServiceType] = useState('');
   const [applyingAs, setApplyingAs] = useState('');
   const [affiliatedWith, setAffiliatedWith] = useState('');
-  const [identificationType, setIdentificationType] = useState('');
-  const { register, watch, formState: { errors } } = useForm();
+  const { register, formState: { errors } } = useForm();
 
   // Normalize URL param to matrix value
   useEffect(() => {
@@ -266,7 +265,6 @@ const PermitForm = ({ mode = 'admin', presetType } ) => {
                 <select
                   {...register('identificationType', { required: true })}
                   className="form-input"
-                  onChange={(e) => setIdentificationType(e.target.value)}
                 >
                   <option value="">-- Select from the list --</option>
                   <option value="sa-id">SA ID Card</option>

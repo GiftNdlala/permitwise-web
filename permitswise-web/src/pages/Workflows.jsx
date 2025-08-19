@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Workflows = () => {
-  const [workflows, setWorkflows] = useState([
+  const [workflows] = useState([
     { id: 'WF-01', name: 'New Permit Review', steps: 5, active: true },
     { id: 'WF-02', name: 'Renewal Fast-Track', steps: 3, active: true },
     { id: 'WF-03', name: 'Transfer Verification', steps: 4, active: false }

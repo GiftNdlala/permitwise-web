@@ -5,8 +5,7 @@ import {
   MdNotifications, 
   MdPerson, 
   MdStar,
-  MdLightMode,
-  MdHelp
+  MdLightMode
 } from 'react-icons/md';
 import './Header.css';
 
