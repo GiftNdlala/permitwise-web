@@ -21,57 +21,62 @@ import Analytics from './pages/Analytics';
 import LicencesList from './pages/LicencesList';
 import Users from './pages/Users';
 import './App.css';
+import { AuthProvider } from './context/AuthContext';
+import RequireAuth from './components/routing/RequireAuth';
+import RequireAdmin from './components/routing/RequireAdmin';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Entry */}
-        <Route path="/" element={<Navigate to="/applicant/login" replace />} />
-        <Route path="/login" element={<Navigate to="/applicant/login" replace />} />
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Entry */}
+          <Route path="/" element={<Navigate to="/applicant/login" replace />} />
+          <Route path="/login" element={<Navigate to="/applicant/login" replace />} />
 
-        {/* Admin auth */}
-        <Route path="/admin/login" element={<AdminLogin />} />
+          {/* Admin auth */}
+          <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* Admin portal */}
-        <Route path="/admin" element={<Layout />}>
-          <Route index element={<Navigate to="dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="permits" element={<Navigate to="permits/list" replace />} />
-          <Route path="permits/list" element={<PermitsList />} />
-          <Route path="permits/new" element={<PermitForm mode="admin" presetType="New" />} />
-          <Route path="permits/amendment" element={<PermitForm mode="admin" presetType="Amendment" />} />
-          <Route path="permits/renewal" element={<PermitForm mode="admin" presetType="Renewal" />} />
-          <Route path="permits/transfer" element={<PermitForm mode="admin" presetType="Transfer" />} />
-          <Route path="permits/conversion" element={<PermitForm mode="admin" presetType="Conversion" />} />
-          <Route path="permits/:id" element={<PermitDetail />} />
-          <Route path="licences" element={<LicencesList />} />
-          <Route path="workflows" element={<Workflows />} />
-          <Route path="notifications" element={<Notifications />} />
-          <Route path="payments" element={<Payments />} />
-          <Route path="analytics" element={<Analytics />} />
-          <Route path="settings" element={<Settings />} />
-          <Route path="users" element={<Users />} />
-        </Route>
+          {/* Admin portal */}
+          <Route path="/admin" element={<RequireAdmin><Layout /></RequireAdmin>}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="permits" element={<Navigate to="permits/list" replace />} />
+            <Route path="permits/list" element={<PermitsList />} />
+            <Route path="permits/new" element={<PermitForm mode="admin" presetType="New" />} />
+            <Route path="permits/amendment" element={<PermitForm mode="admin" presetType="Amendment" />} />
+            <Route path="permits/renewal" element={<PermitForm mode="admin" presetType="Renewal" />} />
+            <Route path="permits/transfer" element={<PermitForm mode="admin" presetType="Transfer" />} />
+            <Route path="permits/conversion" element={<PermitForm mode="admin" presetType="Conversion" />} />
+            <Route path="permits/:id" element={<PermitDetail />} />
+            <Route path="licences" element={<LicencesList />} />
+            <Route path="workflows" element={<Workflows />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="analytics" element={<Analytics />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="users" element={<Users />} />
+          </Route>
 
-        {/* Applicant auth */}
-        <Route path="/applicant/login" element={<ApplicantLogin />} />
-        <Route path="/applicant/signup" element={<ApplicantSignup />} />
+          {/* Applicant auth */}
+          <Route path="/applicant/login" element={<ApplicantLogin />} />
+          <Route path="/applicant/signup" element={<ApplicantSignup />} />
 
-        {/* Applicants portal */}
-        <Route path="/applicant" element={<ApplicantLayout />}>
-          <Route index element={<Navigate to="applications/new" replace />} />
-          <Route path="applications" element={<ApplicantApplications />} />
-          <Route path="applications/new" element={<ApplicantSelectType />} />
-          <Route path="applications/new/:type" element={<PermitForm mode="applicant" />} />
-          <Route path="profile" element={<ApplicantProfile />} />
-          <Route path="help" element={<ApplicantHelp />} />
-        </Route>
+          {/* Applicants portal */}
+          <Route path="/applicant" element={<RequireAuth><ApplicantLayout /></RequireAuth>}>
+            <Route index element={<Navigate to="applications/new" replace />} />
+            <Route path="applications" element={<ApplicantApplications />} />
+            <Route path="applications/new" element={<ApplicantSelectType />} />
+            <Route path="applications/new/:type" element={<PermitForm mode="applicant" />} />
+            <Route path="profile" element={<ApplicantProfile />} />
+            <Route path="help" element={<ApplicantHelp />} />
+          </Route>
 
-        {/* Catch all */}
-        <Route path="*" element={<Navigate to="/applicant/login" replace />} />
-      </Routes>
-    </Router>
+          {/* Catch all */}
+          <Route path="*" element={<Navigate to="/applicant/login" replace />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
