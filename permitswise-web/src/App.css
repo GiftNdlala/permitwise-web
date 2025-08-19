@@ -1,4 +1,33 @@
-/* Global Dark Theme Styles */
+/* Global Theming */
+:root {
+  --bg: #1e1e2d;
+  --surface: #0f0f0f;
+  --header-bg: #1f1f1f;
+  --border: #333333;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --input-bg: #2d2d2d;
+  --input-border: #404040;
+  --card-bg: #2a2a3d;
+  --card-border: #3c3c50;
+  --accent: #2563eb;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+}
+
+[data-theme="light"] {
+  --bg: #f7f7fb;
+  --surface: #ffffff;
+  --header-bg: #ffffff;
+  --border: #e5e7eb;
+  --text: #0f172a;
+  --muted: #6b7280;
+  --input-bg: #ffffff;
+  --input-border: #e5e7eb;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
+}
 * {
   box-sizing: border-box;
 }
@@ -10,8 +39,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #1e1e2d;
-  color: white;
+  background: var(--bg);
+  color: var(--text);
 }
 
 code {
@@ -26,7 +55,7 @@ code {
 }
 
 ::-webkit-scrollbar-track {
-  background: #2a2a3d;
+  background: var(--card-bg);
 }
 
 ::-webkit-scrollbar-thumb {

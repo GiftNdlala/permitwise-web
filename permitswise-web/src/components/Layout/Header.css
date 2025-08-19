@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 24px;
-  background: #1f1f1f;
-  border-bottom: 1px solid #333333;
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--border);
   height: 72px;
   position: fixed;
   top: 0;
@@ -33,7 +33,7 @@
   margin: 0;
   font-size: 20px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text);
 }
 
 .header-center {
@@ -54,29 +54,29 @@
   left: 12px;
   top: 50%;
   transform: translateY(-50%);
-  color: #9ca3af;
+  color: var(--muted);
   font-size: 18px;
 }
 
 .search-input {
   width: 100%;
   padding: 10px 12px 10px 40px;
-  background: #2d2d2d;
-  border: 1px solid #404040;
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
   border-radius: 8px;
-  color: #ffffff;
+  color: var(--text);
   font-size: 14px;
   transition: border-color 0.2s;
 }
 
 .search-input::placeholder {
-  color: #9ca3af;
+  color: var(--muted);
 }
 
 .search-input:focus {
   outline: none;
-  border-color: #10b981;
-  background: #2d2d2d;
+  border-color: var(--success);
+  background: var(--input-bg);
 }
 
 .header-right {
@@ -94,7 +94,7 @@
   padding: 8px 12px;
   background: transparent;
   border: none;
-  color: #bbbbbb;
+  color: var(--muted);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -104,7 +104,7 @@
 
 .header-button:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  color: var(--text);
 }
 
 .header-icon {
@@ -118,7 +118,7 @@
 
 .ai-button {
   background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
+  color: var(--success);
   border: 1px solid rgba(16, 185, 129, 0.2);
 }
 
@@ -154,7 +154,7 @@
 
 .user-button:hover {
   background: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
+  color: var(--text);
 }
 
 .user-avatar {
@@ -165,7 +165,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--text);
 }
 
 .user-icon {
@@ -175,8 +175,70 @@
 .user-name {
   font-size: 14px;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text);
 }
+
+/* Dropdowns & Side Chat */
+.dropdown {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 8px;
+  width: 280px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 200;
+}
+
+.dropdown-item {
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--text);
+}
+
+.dropdown-item:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.side-chat {
+  position: fixed;
+  top: 72px;
+  right: 16px;
+  bottom: 16px;
+  width: 360px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  z-index: 150;
+}
+
+.side-chat-header {
+  padding: 12px;
+  border-bottom: 1px solid var(--card-border);
+  color: var(--text);
+}
+
+.side-chat-body {
+  padding: 12px;
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.side-chat-input {
+  padding: 8px;
+  border-top: 1px solid var(--card-border);
+  display: flex;
+  gap: 8px;
+}
+
 
 @media (max-width: 1024px) {
   .header {
