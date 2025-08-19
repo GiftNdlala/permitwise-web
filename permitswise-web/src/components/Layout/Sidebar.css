@@ -1,8 +1,8 @@
 .sidebar {
   width: 280px;
   height: 100vh;
-  background: #6366f1;
-  color: white;
+  background: var(--card-bg);
+  color: var(--text);
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -14,7 +14,7 @@
 
 .sidebar-header {
   padding: 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid var(--card-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -25,13 +25,13 @@
   margin: 0;
   font-size: 20px;
   font-weight: 600;
-  color: white;
+  color: var(--text);
 }
 
 .sidebar-toggle {
   background: none;
   border: none;
-  color: white;
+  color: var(--text);
   font-size: 16px;
   cursor: pointer;
   padding: 4px;
@@ -43,7 +43,7 @@
 }
 
 .sidebar-toggle:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.04);
 }
 
 .toggle-icon {
@@ -66,7 +66,7 @@
   display: flex;
   align-items: center;
   padding: 12px 20px;
-  color: white;
+  color: var(--text);
   text-decoration: none;
   transition: all 0.2s;
   position: relative;
@@ -75,12 +75,12 @@
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 .nav-item.active {
-  background: rgba(255, 255, 255, 0.15);
-  border-left: 3px solid #10b981;
+  background: rgba(0, 0, 0, 0.08);
+  border-left: 3px solid var(--success);
 }
 
 .nav-icon {
@@ -104,7 +104,7 @@
 }
 
 .sub-nav {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.06);
   margin-left: 20px;
   border-radius: 6px;
   margin-top: 2px;
@@ -116,7 +116,7 @@
   display: flex;
   align-items: center;
   padding: 10px 16px;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text);
   text-decoration: none;
   transition: all 0.2s;
   font-size: 13px;
@@ -124,14 +124,14 @@
 }
 
 .sub-nav-item:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: white;
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--text);
 }
 
 .sub-nav-item.active {
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  border-left: 2px solid #10b981;
+  background: rgba(0, 0, 0, 0.08);
+  color: var(--text);
+  border-left: 2px solid var(--success);
 }
 
 .sub-nav-icon {
@@ -154,15 +154,15 @@
 }
 
 .logout-item {
-  color: rgba(255, 255, 255, 0.8);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--muted);
+  border-top: 1px solid var(--card-border);
   margin-top: 16px;
   padding-top: 16px;
 }
 
 .logout-item:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  background: rgba(0, 0, 0, 0.06);
 }
 
 @media (max-width: 768px) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-import { MdAdd, MdList, MdPerson, MdHelp, MdLogout } from 'react-icons/md';
+import { MdAdd, MdList, MdPerson, MdHelp, MdLogout, MdDashboard } from 'react-icons/md';
 import './Sidebar.css';
 
 const ApplicantSidebar = () => {
@@ -16,6 +16,12 @@ const ApplicantSidebar = () => {
         <h2 className="sidebar-title">PermitWise</h2>
       </div>
       <nav className="sidebar-nav">
+        <div className="nav-item-container">
+          <Link to="/applicant/dashboard" className={`nav-item ${isActive('/applicant/dashboard') ? 'active' : ''}`}>
+            <MdDashboard className="nav-icon" />
+            <span className="nav-label">Dashboard</span>
+          </Link>
+        </div>
         <div className="nav-item-container">
           <Link to="/applicant/applications/new" className={`nav-item ${isActive('/applicant/applications/new') ? 'active' : ''}`}>
             <MdAdd className="nav-icon" />
