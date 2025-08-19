@@ -6,7 +6,8 @@ const AuthContext = createContext({
   login: async (_email, _password) => {},
   signup: async (_email, _password, _displayName) => {},
   logout: async () => {},
-  loginAsAdmin: async (_email) => {}
+  loginAsAdmin: async (_email) => {},
+  updateProfile: async (_partial) => {}
 });
 
 export const AuthProvider = ({ children }) => {
@@ -61,7 +62,15 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const value = useMemo(() => ({ user, initializing, login, signup, logout, loginAsAdmin }), [user, initializing]);
+  const updateProfile = async (partial) => {
+    if (!user) return null;
+    const updated = { ...user, ...partial };
+    window.localStorage.setItem('demo_user', JSON.stringify(updated));
+    setUser(updated);
+    return updated;
+  };
+
+  const value = useMemo(() => ({ user, initializing, login, signup, logout, loginAsAdmin, updateProfile }), [user, initializing]);
 
   return (
     <AuthContext.Provider value={value}>
