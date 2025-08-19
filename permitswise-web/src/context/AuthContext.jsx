@@ -1,6 +1,4 @@
 import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
-import { auth } from '../firebase';
-import { onAuthStateChanged, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 
 const AuthContext = createContext({
   user: null,
@@ -15,30 +13,39 @@ export const AuthProvider = ({ children }) => {
   const [initializing, setInitializing] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setInitializing(false);
-    });
-    return () => unsubscribe();
+    try {
+      const raw = window.localStorage.getItem('demo_user');
+      if (raw) {
+        setUser(JSON.parse(raw));
+      }
+    } catch (_) {}
+    setInitializing(false);
   }, []);
 
-  const login = async (email, password) => {
-    const result = await signInWithEmailAndPassword(auth, email, password);
-    setUser(result.user);
-    return result.user;
+  const login = async (email, _password) => {
+    const demoUser = {
+      email,
+      displayName: email.split('@')[0],
+      role: email.endsWith('@dot.gov') || email.endsWith('@transport.gov') ? 'admin' : 'applicant'
+    };
+    window.localStorage.setItem('demo_user', JSON.stringify(demoUser));
+    setUser(demoUser);
+    return demoUser;
   };
 
-  const signup = async (email, password, displayName) => {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
-    if (displayName) {
-      await updateProfile(result.user, { displayName });
-    }
-    setUser(result.user);
-    return result.user;
+  const signup = async (email, _password, displayName) => {
+    const demoUser = {
+      email,
+      displayName: displayName || email.split('@')[0],
+      role: 'applicant'
+    };
+    window.localStorage.setItem('demo_user', JSON.stringify(demoUser));
+    setUser(demoUser);
+    return demoUser;
   };
 
   const logout = async () => {
-    await signOut(auth);
+    window.localStorage.removeItem('demo_user');
     setUser(null);
   };
 

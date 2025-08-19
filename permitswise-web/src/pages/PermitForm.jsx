@@ -557,8 +557,30 @@ const PermitForm = ({ mode = 'admin', presetType } ) => {
               </div>
             </div>
             
-            <div className="placeholder-content">
-              Content for Documentation will be implemented here. This section is for any additional annexures required for the application.
+            <div className="form-row">
+              <div className="form-field">
+                <label className="field-label">
+                  Proof of Address <span className="required">*</span>
+                </label>
+                <input
+                  type="file"
+                  {...register('proofOfAddress', { required: true })}
+                  className="form-input file-input"
+                />
+                {errors.proofOfAddress && (
+                  <span className="error-message">Proof of address is required</span>
+                )}
+              </div>
+              <div className="form-field">
+                <label className="field-label">
+                  Bank Statement (3 months)
+                </label>
+                <input
+                  type="file"
+                  {...register('bankStatement')}
+                  className="form-input file-input"
+                />
+              </div>
             </div>
           </div>
         );
@@ -588,8 +610,35 @@ const PermitForm = ({ mode = 'admin', presetType } ) => {
               </div>
             </div>
             
-            <div className="placeholder-content">
-              Content for Vehicle Data will be implemented here. This includes vehicle registration, type, capacity, etc.
+            <div className="form-row">
+              <div className="form-field">
+                <label className="field-label">
+                  Vehicle Type <span className="required">*</span>
+                </label>
+                <select
+                  {...register('vehicleType', { required: true })}
+                  className="form-input"
+                >
+                  <option value="">-- Select type --</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="minibus">Minibus</option>
+                  <option value="bus">Bus</option>
+                  <option value="truck">Truck</option>
+                </select>
+                {errors.vehicleType && (
+                  <span className="error-message">Vehicle type is required</span>
+                )}
+              </div>
+              <div className="form-field">
+                <label className="field-label">
+                  Capacity (seats)
+                </label>
+                <input
+                  type="number"
+                  {...register('capacity')}
+                  className="form-input"
+                />
+              </div>
             </div>
           </div>
         );

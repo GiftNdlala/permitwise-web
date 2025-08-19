@@ -1,10 +1,13 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { MdAdd, MdList, MdPerson, MdHelp, MdLogout } from 'react-icons/md';
 import './Sidebar.css';
 
 const ApplicantSidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const isActive = (path) => location.pathname === path;
 
   return (
@@ -38,10 +41,10 @@ const ApplicantSidebar = () => {
           </Link>
         </div>
         <div className="nav-item-container logout-container">
-          <Link to="/login" className="nav-item logout-item">
+          <button onClick={async () => { await logout(); navigate('/applicant/login'); }} className="nav-item logout-item" style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}>
             <MdLogout className="nav-icon" />
             <span className="nav-label">Log Out</span>
-          </Link>
+          </button>
         </div>
       </nav>
     </div>

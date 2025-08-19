@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import { 
   MdDashboard, 
   MdDescription, 
@@ -25,6 +26,8 @@ import './Sidebar.css';
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { logout } = useAuth();
   const [expandedSections, setExpandedSections] = useState({
     permits: true,
     licences: false
@@ -219,13 +222,14 @@ const Sidebar = () => {
         </div>
 
         <div className="nav-item-container logout-container">
-          <Link 
-            to="/login" 
+          <button 
+            onClick={async () => { await logout(); navigate('/applicant/login'); }} 
             className="nav-item logout-item"
+            style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
           >
             <MdLogout className="nav-icon" />
             <span className="nav-label">Log Out</span>
-          </Link>
+          </button>
         </div>
       </nav>
     </div>

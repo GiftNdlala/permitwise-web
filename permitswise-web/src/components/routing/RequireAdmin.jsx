@@ -2,11 +2,8 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-// Simple admin gate: check email domain contains dot.gov
-const isAdminUser = (user) => {
-  if (!user || !user.email) return false;
-  return user.email.endsWith('@dot.gov') || user.email.endsWith('@transport.gov');
-};
+// Simple admin gate for demo: use role field set by demo auth
+const isAdminUser = (user) => user && user.role === 'admin';
 
 const RequireAdmin = ({ children }) => {
   const { user, initializing } = useAuth();
