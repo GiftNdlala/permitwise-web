@@ -5,7 +5,8 @@ const AuthContext = createContext({
   initializing: true,
   login: async (_email, _password) => {},
   signup: async (_email, _password, _displayName) => {},
-  logout: async () => {}
+  logout: async () => {},
+  loginAsAdmin: async (_email) => {}
 });
 
 export const AuthProvider = ({ children }) => {
@@ -44,12 +45,23 @@ export const AuthProvider = ({ children }) => {
     return demoUser;
   };
 
+  const loginAsAdmin = async (email) => {
+    const demoUser = {
+      email,
+      displayName: email.split('@')[0],
+      role: 'admin'
+    };
+    window.localStorage.setItem('demo_user', JSON.stringify(demoUser));
+    setUser(demoUser);
+    return demoUser;
+  };
+
   const logout = async () => {
     window.localStorage.removeItem('demo_user');
     setUser(null);
   };
 
-  const value = useMemo(() => ({ user, initializing, login, signup, logout }), [user, initializing]);
+  const value = useMemo(() => ({ user, initializing, login, signup, logout, loginAsAdmin }), [user, initializing]);
 
   return (
     <AuthContext.Provider value={value}>

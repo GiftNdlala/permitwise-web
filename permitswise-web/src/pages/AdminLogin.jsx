@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext';
 const AdminLogin = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { login } = useAuth();
+  const { loginAsAdmin } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,7 +14,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setError('');
     try {
-      await login(email, password);
+      await loginAsAdmin(email);
       const redirectTo = location.state?.from?.pathname || '/admin/dashboard';
       navigate(redirectTo, { replace: true });
     } catch (err) {
