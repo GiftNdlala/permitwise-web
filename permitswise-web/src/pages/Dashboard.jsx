@@ -63,8 +63,8 @@ const Dashboard = () => {
         ))}
       </div>
 
-      <div className="dashboard-grid">
-        <div className="dashboard-card chart-card">
+      <div className="dashboard-grid" style={{ gridTemplateColumns: '2fr 1fr' }}>
+        <div className="dashboard-card chart-card" style={{ gridColumn: '1 / span 2' }}>
           <h3 className="card-title">Analytics</h3>
           <p className="card-subtitle">Distribution of applications by type.</p>
           

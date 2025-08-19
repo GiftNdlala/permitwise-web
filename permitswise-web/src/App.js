@@ -14,6 +14,7 @@ import ApplicantApplications from './applicant/pages/ApplicationsList';
 import ApplicantSelectType from './applicant/pages/SelectApplicationType';
 import ApplicantProfile from './applicant/pages/Profile';
 import ApplicantHelp from './applicant/pages/Help';
+import ApplicantDashboard from './applicant/pages/Dashboard';
 import Workflows from './pages/Workflows';
 import Notifications from './pages/Notifications';
 import Payments from './pages/Payments';
@@ -64,7 +65,8 @@ function App() {
 
           {/* Applicants portal */}
           <Route path="/applicant" element={<RequireAuth><ApplicantLayout /></RequireAuth>}>
-            <Route index element={<Navigate to="applications/new" replace />} />
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<ApplicantDashboard />} />
             <Route path="applications" element={<ApplicantApplications />} />
             <Route path="applications/new" element={<ApplicantSelectType />} />
             <Route path="applications/new/:type" element={<PermitForm mode="applicant" />} />
