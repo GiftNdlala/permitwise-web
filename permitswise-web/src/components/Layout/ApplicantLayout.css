@@ -1,0 +1,45 @@
+.layout-container {
+  display: flex;
+  height: 100vh;
+  background: var(--bg);
+}
+
+.sidebar {
+  width: 240px;
+  min-width: 240px;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100vw;
+    min-width: 0;
+  }
+  .main-content {
+    padding: 1rem;
+  }
+}
+
+/* Chatbot icon positioning */
+.chatbot-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+@media (max-width: 768px) {
+  .chatbot-icon {
+    bottom: 80px;
+  }
+}

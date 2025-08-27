@@ -2,16 +2,16 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from './Header';
 import ApplicantSidebar from './ApplicantSidebar';
-import './Layout.css';
+import './ApplicantLayout.css';
 
 const ApplicantLayout = () => {
   return (
-    <div className="layout">
+    <div className="layout-container">
       <ApplicantSidebar />
-      <Header />
-      <main className="main-content">
+      <div className="main-content">
+        <Header />
         <Outlet />
-      </main>
+      </div>
     </div>
   );
 };
