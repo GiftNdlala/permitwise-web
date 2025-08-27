@@ -47,14 +47,14 @@ const AdminLogin = () => {
             >
               {isLight ? '🌙' : '☀️'}
             </button>
-          </div>
+        </div>
         </div>
 
         <div className="login-content">
           <h2 className="login-title">Admin Portal</h2>
           <p className="login-subtitle">Sign in with your staff credentials to access the PermitWise administration system.</p>
           
-          {error && (
+        {error && (
             <div className="error-message">
               {error}
             </div>
@@ -94,8 +94,8 @@ const AdminLogin = () => {
             <p className="footer-text">
               Secure access to permit management, analytics, and administrative functions.
             </p>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   );

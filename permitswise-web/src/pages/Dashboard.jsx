@@ -40,9 +40,22 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      {/* Debug test div */}
+      <div style={{ 
+        background: 'red', 
+        color: 'white', 
+        padding: '20px', 
+        margin: '20px', 
+        border: '3px solid black',
+        fontSize: '24px',
+        fontWeight: 'bold'
+      }}>
+        🚨 DASHBOARD CONTENT IS RENDERING! 🚨
+      </div>
+      
       <div className="dashboard-header">
         <div className="header-content">
-        <h1 className="dashboard-title">Dashboard</h1>
+          <h1 className="dashboard-title">Dashboard</h1>
           <p className="dashboard-subtitle">Welcome to PermitWise Admin Portal. Manage and track all permits efficiently.</p>
         </div>
         <div className="header-stats">
@@ -104,33 +117,33 @@ const Dashboard = () => {
           </div>
           
           <div className="chart-section">
-          <div className="pie-chart">
-            <div className="chart-container">
-              <div className="pie-chart-visual">
-                {mockData.applicationTypes.map((item, index) => (
-                  <div
-                    key={item.type}
-                    className="pie-slice"
-                    style={{
-                      background: `conic-gradient(${item.color} 0deg ${item.percentage * 3.6}deg, transparent ${item.percentage * 3.6}deg)`,
-                      transform: `rotate(${index * 90}deg)`
-                    }}
-                  />
-                ))}
-              </div>
-              <div className="chart-legend">
-                {mockData.applicationTypes.map((item) => (
-                  <div key={item.type} className="legend-item">
-                    <div 
-                      className="legend-color" 
-                      style={{ backgroundColor: item.color }}
+            <div className="pie-chart">
+              <div className="chart-container">
+                <div className="pie-chart-visual">
+                  {mockData.applicationTypes.map((item, index) => (
+                    <div
+                      key={item.type}
+                      className="pie-slice"
+                      style={{
+                        background: `conic-gradient(${item.color} 0deg ${item.percentage * 3.6}deg, transparent ${item.percentage * 3.6}deg)`,
+                        transform: `rotate(${index * 90}deg)`
+                      }}
                     />
-                    <span className="legend-text">{item.type} ({item.percentage}%)</span>
-                  </div>
-                ))}
+                  ))}
+                </div>
+                <div className="chart-legend">
+                  {mockData.applicationTypes.map((item) => (
+                    <div key={item.type} className="legend-item">
+                      <div 
+                        className="legend-color" 
+                        style={{ backgroundColor: item.color }}
+                      />
+                      <span className="legend-text">{item.type} ({item.percentage}%)</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
             
             {/* Additional charts */}
             <div className="additional-charts">
@@ -169,14 +182,14 @@ const Dashboard = () => {
                     ))}
                   </div>
                 </div>
-            </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div className="dashboard-card insights-card">
           <div className="card-header">
-          <h3 className="card-title">Insights & Actions</h3>
+            <h3 className="card-title">Insights & Actions</h3>
             <p className="card-subtitle">AI-powered notifications and system suggestions.</p>
           </div>
           
