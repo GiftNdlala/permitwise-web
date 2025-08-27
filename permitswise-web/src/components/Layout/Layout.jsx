@@ -8,10 +8,12 @@ const Layout = () => {
   return (
     <div className="layout">
       <Sidebar />
-      <Header />
-      <main className="main-content">
-        <Outlet />
-      </main>
+      <div className="content-area">
+        <Header />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
     </div>
   );
 };
