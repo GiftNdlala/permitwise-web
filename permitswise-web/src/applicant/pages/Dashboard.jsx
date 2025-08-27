@@ -1,4 +1,7 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
+import Layout from '../../components/Layout/Layout';
+import '../../components/Layout/Layout.css';
+import './Dashboard.css';
 
 const HighlightCard = ({ title, value, trend }) => (
   <div style={{ background: '#0b1220', border: '1px solid #1f2937', borderRadius: 12, padding: 16 }}>
@@ -42,48 +45,50 @@ const ApplicantDashboard = () => {
   };
 
   return (
-    <div style={{ padding: 24 }}>
-      <h2 style={{ color: 'white', marginBottom: 16 }}>Dashboard</h2>
+    <Layout>
+      <div className="main-content applicant-dashboard">
+        <h2 style={{ color: 'white', marginBottom: 16 }}>Dashboard</h2>
 
-      {/* Highlights */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 16 }}>
-        {highlights.map((h, i) => (
-          <HighlightCard key={i} {...h} />
-        ))}
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 16 }}>
-        {/* Application types with descriptions */}
-        <div style={{ background: '#0b1220', border: '1px solid #1f2937', borderRadius: 12, padding: 16 }}>
-          <div style={{ color: '#cbd5e1', marginBottom: 8 }}>Start a new application</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: 12 }}>
-            {types.map(t => (
-              <a key={t.key} href={`#/applicant/applications/new/${t.key}`} style={{ display: 'block', background: '#111827', border: '1px solid #374151', color: '#e2e8f0', textDecoration: 'none', borderRadius: 10, padding: 14 }}>
-                <div style={{ color: 'white', fontWeight: 600 }}>{t.label}</div>
-                <div style={{ color: '#94a3b8', fontSize: 12, marginTop: 4 }}>{t.description}</div>
-              </a>
-            ))}
-          </div>
+        {/* Highlights */}
+        <div className="dashboard-highlights">
+          {highlights.map((h, i) => (
+            <HighlightCard key={i} {...h} />
+          ))}
         </div>
 
-        {/* Maestro AI panel */}
-        <div style={{ background: '#0b1220', border: '1px solid #1f2937', borderRadius: 12, display: 'flex', flexDirection: 'column' }}>
-          <div style={{ padding: 16, borderBottom: '1px solid #1f2937', color: '#cbd5e1' }}>Maestro AI</div>
-          <div style={{ padding: 12, flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column', gap: 8 }}>
-            {chat.map((m, i) => (
-              <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
-                <div style={{ maxWidth: '80%', background: m.role === 'user' ? '#1d4ed8' : '#111827', border: '1px solid #1f2937', color: 'white', borderRadius: 12, padding: '8px 12px' }}>{m.text}</div>
-              </div>
-            ))}
-            <div ref={endRef} />
+        <div className="dashboard-main">
+          {/* Application types with descriptions */}
+          <div className="dashboard-app-types">
+            <div style={{ color: '#cbd5e1', marginBottom: 8 }}>Start a new application</div>
+            <div className="dashboard-app-type-list">
+              {types.map(t => (
+                <a key={t.key} href={`#/applicant/applications/new/${t.key}`} className="dashboard-app-type-card">
+                  <div style={{ color: 'white', fontWeight: 600 }}>{t.label}</div>
+                  <div style={{ color: '#94a3b8', fontSize: 12, marginTop: 4 }}>{t.description}</div>
+                </a>
+              ))}
+            </div>
           </div>
-          <div style={{ padding: 12, borderTop: '1px solid #1f2937', display: 'flex', gap: 8 }}>
-            <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') send(); }} placeholder="Ask Maestro..." style={{ flex: 1, background: '#0f172a', border: '1px solid #1f2937', color: 'white', borderRadius: 8, padding: '10px 12px' }} />
-            <button onClick={send} style={{ background: '#2563eb', border: 'none', padding: '10px 14px', borderRadius: 8, color: 'white' }}>Send</button>
+
+          {/* Maestro AI panel */}
+          <div className="dashboard-maestro">
+            <div className="dashboard-maestro-header">Maestro AI</div>
+            <div className="dashboard-maestro-chat">
+              {chat.map((m, i) => (
+                <div key={i} style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
+                  <div style={{ maxWidth: '80%', background: m.role === 'user' ? '#1d4ed8' : '#111827', border: '1px solid #1f2937', color: 'white', borderRadius: 12, padding: '8px 12px' }}>{m.text}</div>
+                </div>
+              ))}
+              <div ref={endRef} />
+            </div>
+            <div className="dashboard-maestro-input">
+              <input value={input} onChange={(e) => setInput(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') send(); }} placeholder="Ask Maestro..." />
+              <button onClick={send}>Send</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
