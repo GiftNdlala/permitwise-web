@@ -1,5 +1,5 @@
 import React, { useMemo, useRef, useState, useEffect } from 'react';
-import Layout from '../../components/Layout/Layout';
+import ApplicantLayout from '../../components/Layout/ApplicantLayout';
 import '../../components/Layout/Layout.css';
 import './Dashboard.css';
 
@@ -45,7 +45,7 @@ const ApplicantDashboard = () => {
   };
 
   return (
-    <Layout>
+  <ApplicantLayout>
       <div className="main-content applicant-dashboard">
         <h2 style={{ color: 'white', marginBottom: 16 }}>Dashboard</h2>
 
@@ -88,7 +88,7 @@ const ApplicantDashboard = () => {
           </div>
         </div>
       </div>
-    </Layout>
+  </ApplicantLayout>
   );
 };
 
