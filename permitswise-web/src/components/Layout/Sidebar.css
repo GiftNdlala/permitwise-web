@@ -275,9 +275,11 @@
   }
   
   .sidebar.collapsed {
-    width: 60px;
+    width: 0;
+    min-width: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
   }
-  
   .sidebar-header {
     padding: 16px;
     min-height: 64px;
