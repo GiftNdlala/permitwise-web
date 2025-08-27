@@ -1,27 +1,25 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 import { 
   MdSearch, 
   MdNotifications, 
   MdPerson, 
   MdStar,
-  MdLightMode
+  MdLightMode,
+  MdDarkMode
 } from 'react-icons/md';
 import './Header.css';
 
 const Header = () => {
   const location = useLocation();
-  const [theme, setTheme] = useState(() => (document.documentElement.getAttribute('data-theme') || 'dark'));
+  const { toggleTheme, isLight } = useTheme();
   const [showChat, setShowChat] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [chatMessages, setChatMessages] = useState([{ role: 'assistant', text: 'Hi, I am Maestro. How can I assist you?' }]);
   const [chatInput, setChatInput] = useState('');
   const chatEndRef = useRef(null);
-
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -78,6 +76,12 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
+        <div className="brand-container">
+          <div className="brand-logo">
+            <span className="brand-icon">🚦</span>
+            <span className="brand-text">PermitWise</span>
+          </div>
+        </div>
         <div className="page-title-container">
           <span className="page-icon">{getPageIcon()}</span>
           <h1 className="page-title">{getPageTitle()}</h1>
@@ -89,7 +93,7 @@ const Header = () => {
           <MdSearch className="search-icon" />
           <input 
             type="text" 
-            placeholder="Q Search for anything..." 
+            placeholder="Search for anything..." 
             className="search-input"
           />
         </div>
@@ -101,8 +105,8 @@ const Header = () => {
           <span className="button-text">Ask Maestro AI</span>
         </button>
         
-        <button className="header-button theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} title="Toggle theme">
-          <MdLightMode className="header-icon" />
+        <button className="header-button theme-toggle" onClick={toggleTheme} title={`Switch to ${isLight ? 'dark' : 'light'} mode`}>
+          {isLight ? <MdDarkMode className="header-icon" /> : <MdLightMode className="header-icon" />}
         </button>
         
         <div style={{ position: 'relative' }}>

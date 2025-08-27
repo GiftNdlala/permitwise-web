@@ -1,5 +1,6 @@
 /* Global Theming */
 :root {
+  /* Dark theme (default fallback) */
   --bg: #1e1e2d;
   --surface: #0f0f0f;
   --header-bg: #1f1f1f;
@@ -14,19 +15,66 @@
   --success: #10b981;
   --warning: #f59e0b;
   --danger: #ef4444;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #6b7280;
+  --secondary-hover: #4b5563;
+  --background-light: rgba(255, 255, 255, 0.05);
+  --background-hover: rgba(255, 255, 255, 0.08);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="light"] {
-  --bg: #f7f7fb;
+  /* Light theme (default) */
+  --bg: #f8fafc;
   --surface: #ffffff;
   --header-bg: #ffffff;
-  --border: #e5e7eb;
+  --border: #e2e8f0;
   --text: #0f172a;
-  --muted: #6b7280;
+  --muted: #64748b;
   --input-bg: #ffffff;
-  --input-border: #e5e7eb;
+  --input-border: #cbd5e1;
   --card-bg: #ffffff;
-  --card-border: #e5e7eb;
+  --card-border: #e2e8f0;
+  --accent: #3b82f6;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --primary: #3b82f6;
+  --primary-hover: #2563eb;
+  --secondary: #64748b;
+  --secondary-hover: #475569;
+  --background-light: rgba(0, 0, 0, 0.02);
+  --background-hover: rgba(0, 0, 0, 0.04);
+  --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] {
+  /* Dark theme */
+  --bg: #1e1e2d;
+  --surface: #0f0f0f;
+  --header-bg: #1f1f1f;
+  --border: #333333;
+  --text: #ffffff;
+  --muted: #9ca3af;
+  --input-bg: #2d2d2d;
+  --input-border: #404040;
+  --card-bg: #2a2a3d;
+  --card-border: #3c3c50;
+  --accent: #2563eb;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --secondary: #6b7280;
+  --secondary-hover: #4b5563;
+  --background-light: rgba(255, 255, 255, 0.05);
+  --background-hover: rgba(255, 255, 255, 0.08);
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 * {
   box-sizing: border-box;

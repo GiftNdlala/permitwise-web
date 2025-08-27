@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { 
@@ -19,7 +19,9 @@ import {
   MdRefresh,
   MdSwapHoriz,
   MdTransform,
-  MdBusiness
+  MdBusiness,
+  MdMenu,
+  MdClose
 } from 'react-icons/md';
 import './Sidebar.css';
 
@@ -27,10 +29,20 @@ const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useAuth();
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     permits: true,
     licences: false
   });
+
+  useEffect(() => {
+    const width = isCollapsed ? '80px' : '280px';
+    document.documentElement.style.setProperty('--sidebar-width', width);
+  }, [isCollapsed]);
+
+  const toggleSidebar = () => {
+    setIsCollapsed(!isCollapsed);
+  };
 
   const toggleSection = (section) => {
     setExpandedSections(prev => ({
@@ -43,11 +55,21 @@ const Sidebar = () => {
   const startsWith = (prefix) => location.pathname.startsWith(prefix);
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-header">
-        <h2 className="sidebar-title">PermitWise</h2>
-        <button className="sidebar-toggle">
-          <MdChevronRight className="toggle-icon" />
+        <div className="sidebar-brand">
+          <div className="brand-logo">
+            <span className="brand-icon">🚦</span>
+            {!isCollapsed && (
+              <div className="brand-text">
+                <h2 className="sidebar-title">PermitWise</h2>
+                <span className="brand-subtitle">Admin Portal</span>
+              </div>
+            )}
+          </div>
+        </div>
+        <button className="sidebar-toggle" onClick={toggleSidebar}>
+          {isCollapsed ? <MdMenu className="toggle-icon" /> : <MdClose className="toggle-icon" />}
         </button>
       </div>
       
@@ -58,7 +80,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin/dashboard') ? 'active' : ''}`}
           >
             <MdDashboard className="nav-icon" />
-            <span className="nav-label">Dashboard</span>
+            {!isCollapsed && <span className="nav-label">Dashboard</span>}
           </Link>
         </div>
 
@@ -69,15 +91,19 @@ const Sidebar = () => {
             style={{ cursor: 'pointer' }}
           >
             <MdDescription className="nav-icon" />
-            <span className="nav-label">Permits</span>
-            {expandedSections.permits ? (
-              <MdKeyboardArrowDown className="nav-arrow" />
-            ) : (
-              <MdChevronRight className="nav-arrow" />
+            {!isCollapsed && (
+              <>
+                <span className="nav-label">Permits</span>
+                {expandedSections.permits ? (
+                  <MdKeyboardArrowDown className="nav-arrow" />
+                ) : (
+                  <MdChevronRight className="nav-arrow" />
+                )}
+              </>
             )}
           </div>
           
-          {expandedSections.permits && (
+          {expandedSections.permits && !isCollapsed && (
             <div className="sub-nav">
               <Link 
                 to="/admin/permits/new" 
@@ -132,15 +158,19 @@ const Sidebar = () => {
             style={{ cursor: 'pointer' }}
           >
             <MdBusiness className="nav-icon" />
-            <span className="nav-label">Licences</span>
-            {expandedSections.licences ? (
-              <MdKeyboardArrowDown className="nav-arrow" />
-            ) : (
-              <MdChevronRight className="nav-arrow" />
+            {!isCollapsed && (
+              <>
+                <span className="nav-label">Licences</span>
+                {expandedSections.licences ? (
+                  <MdKeyboardArrowDown className="nav-arrow" />
+                ) : (
+                  <MdChevronRight className="nav-arrow" />
+                )}
+              </>
             )}
           </div>
           
-          {expandedSections.licences && (
+          {expandedSections.licences && !isCollapsed && (
             <div className="sub-nav">
               <Link 
                 to="/admin/licences/new" 
@@ -166,7 +196,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin/workflows') ? 'active' : ''}`}
           >
             <MdAssignment className="nav-icon" />
-            <span className="nav-label">Workflows</span>
+            {!isCollapsed && <span className="nav-label">Workflows</span>}
           </Link>
         </div>
 
@@ -176,7 +206,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin/notifications') ? 'active' : ''}`}
           >
             <MdNotifications className="nav-icon" />
-            <span className="nav-label">Notifications</span>
+            {!isCollapsed && <span className="nav-label">Notifications</span>}
           </Link>
         </div>
 
@@ -186,7 +216,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin/payments') ? 'active' : ''}`}
           >
             <MdPayment className="nav-icon" />
-            <span className="nav-label">Payments</span>
+            {!isCollapsed && <span className="nav-label">Payments</span>}
           </Link>
         </div>
 
@@ -196,7 +226,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin/analytics') ? 'active' : ''}`}
           >
             <MdAnalytics className="nav-icon" />
-            <span className="nav-label">Analytics</span>
+            {!isCollapsed && <span className="nav-label">Analytics</span>}
           </Link>
         </div>
 
@@ -206,7 +236,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin/settings') ? 'active' : ''}`}
           >
             <MdSettings className="nav-icon" />
-            <span className="nav-label">Settings</span>
+            {!isCollapsed && <span className="nav-label">Settings</span>}
           </Link>
         </div>
 
@@ -216,7 +246,7 @@ const Sidebar = () => {
             className={`nav-item ${isActive('/admin') ? 'active' : ''}`}
           >
             <MdAdminPanelSettings className="nav-icon" />
-            <span className="nav-label">Admin</span>
+            {!isCollapsed && <span className="nav-label">Admin</span>}
           </Link>
         </div>
 
@@ -227,7 +257,7 @@ const Sidebar = () => {
             style={{ background: 'transparent', border: 'none', width: '100%', textAlign: 'left' }}
           >
             <MdLogout className="nav-icon" />
-            <span className="nav-label">Log Out</span>
+            {!isCollapsed && <span className="nav-label">Log Out</span>}
           </button>
         </div>
       </nav>

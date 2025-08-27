@@ -23,13 +23,15 @@ import LicencesList from './pages/LicencesList';
 import Users from './pages/Users';
 import './App.css';
 import { AuthProvider } from './context/AuthContext';
+import { ThemeProvider } from './context/ThemeContext';
 import RequireAuth from './components/routing/RequireAuth';
 import RequireAdmin from './components/routing/RequireAdmin';
 
 function App() {
   return (
-    <AuthProvider>
-      <Router>
+    <ThemeProvider>
+      <AuthProvider>
+        <Router>
         <Routes>
           {/* Entry */}
           <Route path="/" element={<Navigate to="/applicant/login" replace />} />
@@ -78,7 +80,8 @@ function App() {
           <Route path="*" element={<Navigate to="/applicant/login" replace />} />
         </Routes>
       </Router>
-    </AuthProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 }
 

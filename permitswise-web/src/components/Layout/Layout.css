@@ -1,15 +1,15 @@
 .layout {
   display: flex;
   min-height: 100vh;
-  background: var(--surface);
+  background: var(--bg);
 }
 
 .main-content {
   flex: 1;
   margin-left: 280px;
   margin-top: 72px;
-  padding: 0;
-  background: var(--surface);
+  padding: 24px;
+  background: var(--bg);
   min-height: calc(100vh - 72px);
   overflow-y: auto;
 }
@@ -19,5 +19,6 @@
     margin-left: 0;
     margin-top: 64px;
     min-height: calc(100vh - 64px);
+    padding: 16px;
   }
 } 
