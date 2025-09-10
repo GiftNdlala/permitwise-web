@@ -26,6 +26,14 @@ import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext';
 import RequireAuth from './components/routing/RequireAuth';
 import RequireAdmin from './components/routing/RequireAdmin';
+import RequireMEC from './components/routing/RequireMEC';
+import MECLayout from './components/Layout/MECLayout';
+import MECLogin from './pages/mec/Login';
+import MECDashboard from './pages/mec/Dashboard';
+import MECRegions from './pages/mec/Regions';
+import MECAdmins from './pages/mec/Admins';
+import MECAnalytics from './pages/mec/Analytics';
+import MECSettings from './pages/mec/Settings';
 
 function App() {
   return (
@@ -39,6 +47,9 @@ function App() {
 
           {/* Admin auth */}
           <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* MEC auth */}
+          <Route path="/mec/login" element={<MECLogin />} />
 
           {/* Admin portal */}
           <Route path="/admin" element={<RequireAdmin><Layout /></RequireAdmin>}>
@@ -59,6 +70,20 @@ function App() {
             <Route path="analytics" element={<Analytics />} />
             <Route path="settings" element={<Settings />} />
             <Route path="users" element={<Users />} />
+          </Route>
+
+          {/* MEC portal */}
+          <Route path="/mec" element={<RequireMEC><MECLayout /></RequireMEC>}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<MECDashboard />} />
+            <Route path="permits" element={<PermitsList />} />
+            <Route path="permits/:id" element={<PermitDetail />} />
+            <Route path="payments" element={<Payments />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="analytics" element={<MECAnalytics />} />
+            <Route path="regions" element={<MECRegions />} />
+            <Route path="admins" element={<MECAdmins />} />
+            <Route path="settings" element={<MECSettings />} />
           </Route>
 
           {/* Applicant auth */}

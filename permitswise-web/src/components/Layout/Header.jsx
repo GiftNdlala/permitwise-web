@@ -52,6 +52,16 @@ const Header = () => {
     if (path === '/admin/settings') return 'Settings';
     if (path === '/admin/users') return 'User Management';
 
+    // MEC
+    if (path === '/mec/dashboard') return 'MEC Dashboard';
+    if (path.startsWith('/mec/permits')) return 'All Permits (Province-wide)';
+    if (path === '/mec/regions') return 'Regions';
+    if (path === '/mec/admins') return 'Admin Management';
+    if (path === '/mec/analytics') return 'Province Analytics';
+    if (path === '/mec/payments') return 'Payments';
+    if (path === '/mec/notifications') return 'Notifications';
+    if (path === '/mec/settings') return 'System Settings';
+
     // Applicant
     if (path.startsWith('/applicant')) {
       if (path === '/applicant/applications') return 'My Applications';
@@ -67,8 +77,9 @@ const Header = () => {
 
   const getPageIcon = () => {
     const path = location.pathname;
-    if (path.startsWith('/admin/permits') || path.startsWith('/applicant/applications')) return '📄';
+    if (path.startsWith('/admin/permits') || path.startsWith('/applicant/applications') || path.startsWith('/mec/permits')) return '📄';
     if (path === '/admin/dashboard') return '📊';
+    if (path === '/mec/dashboard') return '🏛️';
     if (path.endsWith('/settings')) return '⚙️';
     return '📋';
   };
