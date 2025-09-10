@@ -2,8 +2,8 @@ import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-// Simple admin gate for demo: use role field set by demo auth
-const isAdminUser = (user) => user && user.role === 'admin';
+// Simple admin gate for demo: allow admin and mec to access admin portal
+const isAdminUser = (user) => user && (user.role === 'admin' || user.role === 'mec');
 
 const RequireAdmin = ({ children }) => {
   const { user, initializing } = useAuth();

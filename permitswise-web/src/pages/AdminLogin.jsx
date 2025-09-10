@@ -94,6 +94,16 @@ const AdminLogin = () => {
             <p className="footer-text">
               Secure access to permit management, analytics, and administrative functions.
             </p>
+            <div style={{ marginTop: 12 }}>
+              <button 
+                type="button"
+                onClick={() => navigate('/mec/login')}
+                className="login-button"
+                style={{ background: 'transparent', color: 'var(--primary)', border: `1px solid var(--primary)`, padding: '10px 14px' }}
+              >
+                Go to MEC Superuser Login
+              </button>
+            </div>
             </div>
           </div>
       </div>

@@ -186,8 +186,8 @@ const MECSidebar = () => {
 
         <div className="nav-item-container">
           <Link 
-            to="/admin" 
-            className={`nav-item ${isActive('/admin') ? 'active' : ''}`}
+            to="/admin/dashboard" 
+            className={`nav-item ${startsWith('/admin') ? 'active' : ''}`}
             data-tooltip="Admin"
           >
             <MdAdminPanelSettings className="nav-icon" />
