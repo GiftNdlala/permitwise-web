@@ -11,17 +11,17 @@ const Notifications = () => {
 
   return (
     <div style={{ padding: 24 }}>
-      <h1 style={{ color: 'white', marginBottom: 12 }}>Notifications</h1>
+      <h1 style={{ color: 'var(--text)', marginBottom: 12 }}>Notifications</h1>
       <div style={{ display: 'flex', gap: 8, marginBottom: 12 }}>
         {['all', 'review', 'warning', 'success'].map(f => (
-          <button key={f} onClick={() => setFilter(f)} style={{ background: filter === f ? '#2563eb' : '#0b1220', border: '1px solid #1f2937', color: 'white', borderRadius: 8, padding: '8px 12px' }}>{f}</button>
+          <button key={f} onClick={() => setFilter(f)} style={{ background: filter === f ? 'var(--primary)' : 'var(--card-bg)', border: '1px solid var(--card-border)', color: 'var(--text)', borderRadius: 8, padding: '8px 12px' }}>{f}</button>
         ))}
       </div>
-      <div style={{ background: '#0b1220', border: '1px solid #1f2937', borderRadius: 12 }}>
+      <div style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)', borderRadius: 12 }}>
         {filtered.map(n => (
-          <div key={n.id} style={{ padding: 12, borderBottom: '1px solid #1f2937', color: '#e2e8f0', display: 'flex', justifyContent: 'space-between' }}>
+          <div key={n.id} style={{ padding: 12, borderBottom: '1px solid var(--card-border)', color: 'var(--text)', display: 'flex', justifyContent: 'space-between' }}>
             <span>{n.text}</span>
-            <span style={{ color: '#94a3b8', fontSize: 12 }}>{n.time}</span>
+            <span style={{ color: 'var(--muted)', fontSize: 12 }}>{n.time}</span>
           </div>
         ))}
       </div>

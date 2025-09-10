@@ -10,7 +10,7 @@ const RequireAdmin = ({ children }) => {
   const location = useLocation();
 
   if (initializing) {
-    return <div style={{ color: 'white', padding: 24 }}>Loading...</div>;
+    return <div style={{ color: 'var(--text)', padding: 24 }}>Loading...</div>;
   }
 
   if (!user) {
